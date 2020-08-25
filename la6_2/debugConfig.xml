@@ -1,0 +1,17 @@
+<JavaCardProject name="la6_2">
+<USER>
+<PKG name="la6_2" aid="11 22 33 44 55" major="1" minor="0">
+<APPLET aid="11 22 33 44 55 00" instanceaid="" parameter="" authority="" privileges="" index="-4784" name="la6_2"/>
+</PKG>
+<PKG name="lab6_5" aid="22 33 44 55 66" major="1" minor="0">
+<APPLET aid="22 33 44 55 66 00" instanceaid="" parameter="" authority="" privileges="" index="16144" name="lab6_5"/>
+</PKG>
+<PKG name="lab6_3" aid="33 44 55 66 77" major="1" minor="0">
+<APPLET aid="33 44 55 66 77 00" instanceaid="" parameter="" authority="" privileges="" index="8232" name="lab6_3"/>
+</PKG>
+<Libs/>
+</USER>
+<DebugInfo>
+<Protocol name="T01"/>
+</DebugInfo>
+</JavaCardProject>

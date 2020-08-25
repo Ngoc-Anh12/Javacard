@@ -1,0 +1,142 @@
+// converted by version 1.3
+// on Thu Aug 06 23:46:29 ICT 2020
+
+.package helloword {
+	.aid 0x11:0x22:0x33:0x44:0x55;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+	}
+
+	.applet {
+		0x11:0x22:0x33:0x44:0x55:0x0 helloword;
+	}
+
+	.constantPool {
+		// 0
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 1
+		classRef helloword;
+		// 2
+		staticMethodRef helloword/<init>()V;
+		// 3
+		virtualMethodRef 0.3.2([BSB)V;		// javacard/framework/Applet.register([BSB)V
+		// 4
+		virtualMethodRef 0.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 5
+		virtualMethodRef 0.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
+		// 6
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 7
+		virtualMethodRef 0.10.8(SS)V;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
+		// 8
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+	}
+
+	.class public helloword 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 0;		// javacard/framework/Applet.<init>()V
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 1;		// helloword/helloword
+					dup;
+					invokespecial 2;		// helloword/helloword.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 3;		// javacard/framework/Applet.register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 5;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 4;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 5;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L7 1 0 L4;
+				L4:	sconst_5;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 104;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 101;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 108;
+					bastore;
+					dup;
+					sconst_3;
+					bspush 108;
+					bastore;
+					dup;
+					sconst_4;
+					bspush 111;
+					bastore;
+					astore_3;
+				L5:	aload_3;
+					arraylength;
+					sstore 4;
+				L6:	aload_3;
+					sconst_0;
+					aload_2;
+					sconst_0;
+					sload 4;
+					invokestatic 6;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					aload_1;
+					sconst_0;
+					sload 4;
+					invokevirtual 7;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
+					goto L8;
+				L7:	sspush 27904;
+					invokestatic 8;		// javacard/framework/ISOException.throwIt(S)V
+				L8:	return;
+		}
+
+	}
+
+}
