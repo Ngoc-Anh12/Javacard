@@ -1,0 +1,224 @@
+// converted by version 1.3
+// on Fri Aug 07 09:16:19 ICT 2020
+
+.package giuaki {
+	.aid 0x0:0x99:0x88:0x77:0x66;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+	}
+
+	.applet {
+		0x0:0x99:0x88:0x77:0x66:0x0 giuaki;
+	}
+
+	.constantPool {
+		// 0
+		staticMethodRef giuaki/<init>([BSB)V;
+		// 1
+		classRef giuaki;
+		// 2
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 3
+		virtualMethodRef 0.3.1()V;		// javacard/framework/Applet.register()V
+		// 4
+		virtualMethodRef 0.3.2([BSB)V;		// javacard/framework/Applet.register([BSB)V
+		// 5
+		staticFieldRef byte[] giuaki/chuthe;
+		// 6
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 7
+		staticFieldRef byte giuaki/diem;
+		// 8
+		virtualMethodRef 0.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 9
+		virtualMethodRef 0.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
+		// 10
+		virtualMethodRef 0.10.6()S;		// javacard/framework/APDU.setIncomingAndReceive()S
+		// 11
+		virtualMethodRef 0.10.7()S;		// javacard/framework/APDU.setOutgoing()S
+		// 12
+		virtualMethodRef 0.10.9(S)V;		// javacard/framework/APDU.setOutgoingLength(S)V
+		// 13
+		virtualMethodRef 0.10.5([BSS)V;		// javacard/framework/APDU.sendBytesLong([BSS)V
+		// 14
+		virtualMethodRef 0.10.4(SS)V;		// javacard/framework/APDU.sendBytes(SS)V
+		// 15
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+	}
+
+	.class public giuaki 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private static final byte INS_NHAP = 0;		// B
+			private static final byte INS_IN = 1;		// B
+			static final byte chuthe_id_length = 3;		// B
+			private static byte[] chuthe;		// [B
+			private static byte diem;		// B
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 1;		// giuaki/giuaki
+					dup;
+					aload_0;
+					sload_1;
+					sload_2;
+					invokespecial 0;		// giuaki/giuaki.<init>([BSB)V
+					pop;
+					return;
+		}
+
+		.method private <init>([BSB)V {
+			.stack 5;
+			.locals 3;
+
+				L0:	aload_0;
+					invokespecial 2;		// javacard/framework/Applet.<init>()V
+					aload_1;
+					sload_2;
+					baload;
+					sstore 4;
+				L1:	sload 4;
+					ifne L3;
+				L2:	aload_0;
+					invokevirtual 3;		// javacard/framework/Applet.register()V
+					goto L4;
+				L3:	aload_0;
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload 4;
+					invokevirtual 4;		// javacard/framework/Applet.register([BSB)V
+				L4:	sload_2;
+					sload 4;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 5;
+				L5:	sload_2;
+					sload 5;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 6;
+				L6:	sinc 2 1;
+					sload 6;
+					ifeq L8;
+				L7:	sconst_3;
+					newarray 11;
+					putstatic_a 5;		// reference giuaki/giuaki.chuthe
+					aload_1;
+					sload_2;
+					getstatic_a 5;		// reference giuaki/giuaki.chuthe
+					sconst_0;
+					sconst_3;
+					invokestatic 6;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					sinc 2 3;
+					aload_1;
+					sload_2;
+					baload;
+					putstatic_b 7;		// byte giuaki/giuaki.diem
+					goto L9;
+				L8:	sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 48;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 49;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 48;
+					bastore;
+					putstatic_a 5;		// reference giuaki/giuaki.chuthe
+					bspush 9;
+					putstatic_b 7;		// byte giuaki/giuaki.diem
+				L9:	return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 4;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 8;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 9;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 10;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L6 2 0 L4 1 L5;
+				L4:	aload_1;
+					invokevirtual 11;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					sconst_3;
+					invokevirtual 12;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 5;		// reference giuaki/giuaki.chuthe
+					sconst_0;
+					sconst_3;
+					invokevirtual 13;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L7;
+				L5:	aload_1;
+					invokevirtual 11;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					sconst_1;
+					invokevirtual 12;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_2;
+					sconst_0;
+					getstatic_b 7;		// byte giuaki/giuaki.diem
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 14;		// javacard/framework/APDU.sendBytes(SS)V
+					goto L7;
+				L6:	sspush 27904;
+					invokestatic 15;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	return;
+		}
+
+	}
+
+}

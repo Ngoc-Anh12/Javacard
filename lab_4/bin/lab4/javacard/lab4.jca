@@ -1,0 +1,482 @@
+// converted by version 1.3
+// on Fri Aug 07 06:30:01 ICT 2020
+
+.package lab4 {
+	.aid 0x11:0x22:0x33:0x44:0x55;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+	}
+
+	.applet {
+		0x11:0x22:0x33:0x44:0x55:0x0 lab4;
+	}
+
+	.constantPool {
+		// 0
+		staticMethodRef lab4/<init>([BSB)V;
+		// 1
+		classRef lab4;
+		// 2
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 3
+		virtualMethodRef 0.3.1()V;		// javacard/framework/Applet.register()V
+		// 4
+		virtualMethodRef 0.3.2([BSB)V;		// javacard/framework/Applet.register([BSB)V
+		// 5
+		staticFieldRef byte[] lab4/sinhVien;
+		// 6
+		staticMethodRef 0.16.1([BS[BSS)S;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+		// 7
+		staticFieldRef byte lab4/soLuongMonThi;
+		// 8
+		staticFieldRef short lab4/len;
+		// 9
+		staticFieldRef byte[] lab4/diemThi;
+		// 10
+		virtualMethodRef 0.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 11
+		virtualMethodRef 0.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
+		// 12
+		virtualMethodRef 0.10.6()S;		// javacard/framework/APDU.setIncomingAndReceive()S
+		// 13
+		staticFieldRef byte lab4/id;
+		// 14
+		staticFieldRef byte lab4/diem;
+		// 15
+		staticFieldRef short lab4/dataLen;
+		// 16
+		virtualMethodRef 0.10.7()S;		// javacard/framework/APDU.setOutgoing()S
+		// 17
+		virtualMethodRef 0.10.9(S)V;		// javacard/framework/APDU.setOutgoingLength(S)V
+		// 18
+		virtualMethodRef 0.10.5([BSS)V;		// javacard/framework/APDU.sendBytesLong([BSS)V
+		// 19
+		virtualMethodRef 0.10.4(SS)V;		// javacard/framework/APDU.sendBytes(SS)V
+		// 20
+		staticFieldRef short lab4/index;
+		// 21
+		staticFieldRef short lab4/diemLen;
+		// 22
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+	}
+
+	.class public lab4 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			static final byte SV_ID_LENGTH = 4;		// B
+			static final byte INS_INF = 0;		// B
+			static final byte INS_NHAP = 1;		// B
+			static final byte INS_IN = 2;		// B
+			static final byte INS_SUA = 3;		// B
+			static final byte INS_XOA = 4;		// B
+			private static byte[] diemThi;		// [B
+			private static byte[] sinhVien;		// [B
+			private static byte soLuongMonThi;		// B
+			private static byte id;		// B
+			private static byte diem;		// B
+			private static short dataLen;		// S
+			private static short diemLen;		// S
+			private static short len;		// S
+			private static short index;		// S
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 1;		// lab4/lab4
+					dup;
+					aload_0;
+					sload_1;
+					sload_2;
+					invokespecial 0;		// lab4/lab4.<init>([BSB)V
+					pop;
+					return;
+		}
+
+		.method private <init>([BSB)V {
+			.stack 5;
+			.locals 3;
+
+				L0:	aload_0;
+					invokespecial 2;		// javacard/framework/Applet.<init>()V
+					aload_1;
+					sload_2;
+					baload;
+					sstore 4;
+				L1:	sload 4;
+					ifne L3;
+				L2:	aload_0;
+					invokevirtual 3;		// javacard/framework/Applet.register()V
+					goto L4;
+				L3:	aload_0;
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload 4;
+					invokevirtual 4;		// javacard/framework/Applet.register([BSB)V
+				L4:	sload_2;
+					sload 4;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 5;
+				L5:	sload_2;
+					sload 5;
+					sadd;
+					sconst_1;
+					sadd;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore 6;
+				L6:	sinc 2 1;
+					sload 6;
+					ifeq L8;
+				L7:	sconst_4;
+					newarray 11;
+					putstatic_a 5;		// reference lab4/lab4.sinhVien
+					aload_1;
+					sload_2;
+					getstatic_a 5;		// reference lab4/lab4.sinhVien
+					sconst_0;
+					sconst_4;
+					invokestatic 6;		// javacard/framework/Util.arrayCopy([BS[BSS)S
+					pop;
+					sinc 2 4;
+					aload_1;
+					sload_2;
+					baload;
+					putstatic_b 7;		// byte lab4/lab4.soLuongMonThi
+					goto L9;
+				L8:	sconst_4;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 83;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 86;
+					bastore;
+					dup;
+					sconst_2;
+					bspush 48;
+					bastore;
+					dup;
+					sconst_3;
+					bspush 49;
+					bastore;
+					putstatic_a 5;		// reference lab4/lab4.sinhVien
+					bspush 9;
+					putstatic_b 7;		// byte lab4/lab4.soLuongMonThi
+				L9:	sconst_2;
+					getstatic_b 7;		// byte lab4/lab4.soLuongMonThi
+					smul;
+					putstatic_s 8;		// short lab4/lab4.len
+					getstatic_s 8;		// short lab4/lab4.len
+					newarray 11;
+					putstatic_a 9;		// reference lab4/lab4.diemThi
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 5;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 10;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 11;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 12;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_2;
+					baload;
+					putstatic_b 13;		// byte lab4/lab4.id
+					aload_2;
+					sconst_3;
+					baload;
+					putstatic_b 14;		// byte lab4/lab4.diem
+					aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					putstatic_s 15;		// short lab4/lab4.dataLen
+					aload_2;
+					sconst_1;
+					baload;
+					stableswitch L50 0 4 L4 L5 L26 L27 L36;
+				L4:	aload_1;
+					invokevirtual 16;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					sconst_5;
+					invokevirtual 17;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 5;		// reference lab4/lab4.sinhVien
+					sconst_0;
+					sconst_4;
+					invokevirtual 18;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					aload_2;
+					sconst_0;
+					getstatic_b 7;		// byte lab4/lab4.soLuongMonThi
+					bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 19;		// javacard/framework/APDU.sendBytes(SS)V
+					goto_w L51;
+				L5:	sconst_5;
+					putstatic_s 20;		// short lab4/lab4.index
+					getstatic_s 15;		// short lab4/lab4.dataLen
+					getstatic_s 8;		// short lab4/lab4.len
+					if_scmpgt L24;
+				L6:	sconst_0;
+					sstore_3;
+				L7:	getstatic_s 20;		// short lab4/lab4.index
+					sstore 4;
+				L8:	sload 4;
+					getstatic_s 20;		// short lab4/lab4.index
+					getstatic_s 15;		// short lab4/lab4.dataLen
+					sconst_3;
+					ssub;
+					sadd;
+					if_scmpge L15;
+				L9:	sload 4;
+					sconst_2;
+					sadd;
+					sstore 5;
+				L10:	sload 5;
+					getstatic_s 20;		// short lab4/lab4.index
+					getstatic_s 15;		// short lab4/lab4.dataLen
+					sconst_1;
+					ssub;
+					sadd;
+					if_scmpge L14;
+				L11:	aload_2;
+					sload 4;
+					baload;
+					aload_2;
+					sload 5;
+					baload;
+					if_scmpne L13;
+				L12:	sconst_1;
+					sstore_3;
+					goto L14;
+				L13:	sinc 5 2;
+					goto L10;
+				L14:	sinc 4 2;
+					goto L8;
+				L15:	sload_3;
+					ifne L22;
+				L16:	sconst_0;
+					sstore 4;
+				L17:	getstatic_s 20;		// short lab4/lab4.index
+					sstore 5;
+				L18:	sload 5;
+					getstatic_s 20;		// short lab4/lab4.index
+					getstatic_s 15;		// short lab4/lab4.dataLen
+					sadd;
+					if_scmpge L20;
+				L19:	getstatic_a 9;		// reference lab4/lab4.diemThi
+					sload 4;
+					aload_2;
+					sload 5;
+					baload;
+					bastore;
+					sinc 4 1;
+					sinc 5 1;
+					goto L18;
+				L20:	sload 4;
+					putstatic_s 21;		// short lab4/lab4.diemLen
+				L21:	goto L23;
+				L22:	sspush 27264;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L23:	goto L25;
+				L24:	sspush 26368;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L25:	aload_1;
+					invokevirtual 16;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 17;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sconst_0;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 18;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L51;
+				L26:	aload_1;
+					invokevirtual 16;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 17;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sconst_0;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 18;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L51;
+				L27:	sconst_m1;
+					putstatic_s 20;		// short lab4/lab4.index
+					sconst_0;
+					sstore_3;
+				L28:	sload_3;
+					getstatic_s 21;		// short lab4/lab4.diemLen
+					sconst_1;
+					ssub;
+					if_scmpge L32;
+				L29:	getstatic_b 13;		// byte lab4/lab4.id
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sload_3;
+					baload;
+					if_scmpne L31;
+				L30:	sload_3;
+					putstatic_s 20;		// short lab4/lab4.index
+					goto L32;
+				L31:	sinc 3 2;
+					goto L28;
+				L32:	getstatic_s 20;		// short lab4/lab4.index
+					sconst_m1;
+					if_scmpeq L34;
+				L33:	getstatic_a 9;		// reference lab4/lab4.diemThi
+					getstatic_s 20;		// short lab4/lab4.index
+					sconst_1;
+					sadd;
+					getstatic_b 14;		// byte lab4/lab4.diem
+					bastore;
+					goto L35;
+				L34:	sspush 27012;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L35:	aload_1;
+					invokevirtual 16;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 17;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sconst_0;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 18;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto_w L51;
+				L36:	sconst_m1;
+					putstatic_s 20;		// short lab4/lab4.index
+					sconst_0;
+					sstore_3;
+				L37:	sload_3;
+					getstatic_s 21;		// short lab4/lab4.diemLen
+					sconst_1;
+					ssub;
+					if_scmpge L41;
+				L38:	getstatic_b 13;		// byte lab4/lab4.id
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sload_3;
+					baload;
+					if_scmpne L40;
+				L39:	sload_3;
+					putstatic_s 20;		// short lab4/lab4.index
+					goto L41;
+				L40:	sinc 3 2;
+					goto L37;
+				L41:	getstatic_s 20;		// short lab4/lab4.index
+					sconst_m1;
+					if_scmpeq L48;
+				L42:	getstatic_s 20;		// short lab4/lab4.index
+					getstatic_s 21;		// short lab4/lab4.diemLen
+					sconst_2;
+					ssub;
+					if_scmpne L44;
+				L43:	getstatic_a 9;		// reference lab4/lab4.diemThi
+					getstatic_s 20;		// short lab4/lab4.index
+					sconst_0;
+					bastore;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					getstatic_s 20;		// short lab4/lab4.index
+					sconst_1;
+					sadd;
+					sconst_0;
+					bastore;
+					goto L47;
+				L44:	getstatic_s 20;		// short lab4/lab4.index
+					sstore_3;
+				L45:	sload_3;
+					getstatic_s 21;		// short lab4/lab4.diemLen
+					sconst_2;
+					ssub;
+					if_scmpge L47;
+				L46:	getstatic_a 9;		// reference lab4/lab4.diemThi
+					sload_3;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sload_3;
+					sconst_2;
+					sadd;
+					baload;
+					bastore;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sload_3;
+					sconst_2;
+					sadd;
+					sconst_0;
+					bastore;
+					sinc 3 1;
+					goto L45;
+				L47:	getstatic_s 21;		// short lab4/lab4.diemLen
+					sconst_2;
+					ssub;
+					putstatic_s 21;		// short lab4/lab4.diemLen
+					goto L49;
+				L48:	sspush 27012;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L49:	aload_1;
+					invokevirtual 16;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 17;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 9;		// reference lab4/lab4.diemThi
+					sconst_0;
+					getstatic_s 8;		// short lab4/lab4.len
+					invokevirtual 18;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L51;
+				L50:	sspush 27904;
+					invokestatic 22;		// javacard/framework/ISOException.throwIt(S)V
+				L51:	return;
+		}
+
+	}
+
+}

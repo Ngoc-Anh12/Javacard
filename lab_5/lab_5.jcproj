@@ -1,0 +1,12 @@
+<JavaCardProject name="lab_5">
+<USER>
+<PKG name="lab5_1" aid="55 66 77 88 99" major="1" minor="0">
+<APPLET aid="55 66 77 88 99 00" instanceaid="" parameter="" authority="" privileges="" index="15768" name="lab5_1"/>
+<CLASS name="lab5Interface"/>
+</PKG>
+<PKG name="lab5_2" aid="66 77 88 99 00" major="1" minor="0">
+<APPLET aid="66 77 88 99 00 00" instanceaid="" parameter="" authority="" privileges="" index="-17496" name="lab5_2"/>
+</PKG>
+<Libs/>
+</USER>
+</JavaCardProject>
