@@ -1,0 +1,322 @@
+// converted by version 1.3
+// on Mon Jul 13 10:41:25 ICT 2020
+
+.package quan_li_sv {
+	.aid 0x11:0x22:0x33:0x44:0x55;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.3;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.applet {
+		0x11:0x22:0x33:0x44:0x55:0x0 quan_li_sv;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef short quan_li_sv/data_length;
+		// 1
+		instanceFieldRef short quan_li_sv/j;
+		// 2
+		instanceFieldRef short quan_li_sv/i;
+		// 3
+		instanceFieldRef short quan_li_sv/username_length;
+		// 4
+		instanceFieldRef short quan_li_sv/id_length;
+		// 5
+		instanceFieldRef short quan_li_sv/dob_length;
+		// 6
+		staticFieldRef byte[] quan_li_sv/dob;
+		// 7
+		staticFieldRef short[] quan_li_sv/t;
+		// 8
+		virtualMethodRef 0.3.3()Z;		// selectingApplet()Z
+		// 9
+		virtualMethodRef 0.10.6()S;		// setIncomingAndReceive()S
+		// 10
+		virtualMethodRef 0.10.1()[B;		// getBuffer()[B
+		// 11
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 12
+		classRef quan_li_sv;
+		// 13
+		staticMethodRef quan_li_sv/<init>()V;
+		// 14
+		virtualMethodRef 0.3.2([BSB)V;		// register([BSB)V
+		// 15
+		staticFieldRef byte[] quan_li_sv/id;
+		// 16
+		staticFieldRef byte[] quan_li_sv/username;
+		// 17
+		virtualMethodRef 0.10.7()S;		// setOutgoing()S
+		// 18
+		virtualMethodRef 0.10.9(S)V;		// setOutgoingLength(S)V
+		// 19
+		virtualMethodRef 0.10.5([BSS)V;		// sendBytesLong([BSS)V
+		// 20
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+	}
+
+	.class public quan_li_sv 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			 short data_length 0;		// S
+			 short username_length 1;		// S
+			 short id_length 2;		// S
+			 short dob_length 3;		// S
+			 short i 4;		// S
+			 short j 5;		// S
+			private static final byte INS_INFO = 2;		// B
+			private static final byte INS_PRINT = 3;		// B
+			private static byte[] id;		// [B
+			private static byte[] username;		// [B
+			private static byte[] dob;		// [B
+			private static short[] t;		// [S
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 11;		// javacard/framework/Applet.<init>()V
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 12;		// quan_li_sv/quan_li_sv
+					dup;
+					invokespecial 13;		// quan_li_sv/quan_li_sv.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 14;		// register([BSB)V
+					sconst_5;
+					newarray 11;
+					putstatic_a 15;		// reference quan_li_sv/quan_li_sv.id
+					bspush 50;
+					newarray 11;
+					putstatic_a 16;		// reference quan_li_sv/quan_li_sv.username
+					sconst_5;
+					newarray 11;
+					putstatic_a 6;		// reference quan_li_sv/quan_li_sv.dob
+					sconst_5;
+					newarray 12;
+					putstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 4;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 8;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 9;		// setIncomingAndReceive()S
+					pop;
+					aload_1;
+					invokevirtual 10;		// getBuffer()[B
+					astore_2;
+				L3:	aload_0;
+					aload_2;
+					sconst_4;
+					baload;
+					sspush 255;
+					sand;
+					putfield_s 0;		// short quan_li_sv/quan_li_sv.data_length
+					aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L19 2 2 L4 3 L16;
+				L4:	aload_0;
+					sconst_0;
+					putfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					sconst_5;
+					sstore_3;
+				L5:	aload_0;
+					sload_3;
+					putfield_s 2;		// short quan_li_sv/quan_li_sv.i
+				L6:	getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					bspush 6;
+					getfield_s_this 0;		// short quan_li_sv/quan_li_sv.data_length
+					sadd;
+					if_scmpge L10;
+				L7:	aload_2;
+					getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					baload;
+					bspush 96;
+					if_scmpne L9;
+				L8:	getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					getfield_s_this 1;		// short quan_li_sv/quan_li_sv.j
+					getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					sastore;
+					aload_0;
+					dup;
+					getfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					sconst_1;
+					sadd;
+					putfield_s 1;		// short quan_li_sv/quan_li_sv.j
+				L9:	aload_0;
+					dup;
+					getfield_s 2;		// short quan_li_sv/quan_li_sv.i
+					sconst_1;
+					sadd;
+					putfield_s 2;		// short quan_li_sv/quan_li_sv.i
+					goto L6;
+				L10:	aload_0;
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_0;
+					saload;
+					sload_3;
+					ssub;
+					putfield_s 3;		// short quan_li_sv/quan_li_sv.username_length
+					aload_0;
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_1;
+					saload;
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_0;
+					saload;
+					ssub;
+					sconst_1;
+					ssub;
+					putfield_s 4;		// short quan_li_sv/quan_li_sv.id_length
+					aload_0;
+					sload_3;
+					getfield_s_this 0;		// short quan_li_sv/quan_li_sv.data_length
+					sadd;
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_1;
+					saload;
+					ssub;
+					sconst_1;
+					ssub;
+					putfield_s 5;		// short quan_li_sv/quan_li_sv.dob_length
+					aload_0;
+					sconst_0;
+					putfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					aload_0;
+					sload_3;
+					putfield_s 2;		// short quan_li_sv/quan_li_sv.i
+				L11:	getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_0;
+					saload;
+					if_scmpge L13;
+				L12:	getstatic_a 16;		// reference quan_li_sv/quan_li_sv.username
+					getfield_s_this 1;		// short quan_li_sv/quan_li_sv.j
+					aload_2;
+					getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					baload;
+					bastore;
+					aload_0;
+					dup;
+					getfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					sconst_1;
+					sadd;
+					putfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					aload_0;
+					dup;
+					getfield_s 2;		// short quan_li_sv/quan_li_sv.i
+					sconst_1;
+					sadd;
+					putfield_s 2;		// short quan_li_sv/quan_li_sv.i
+					goto L11;
+				L13:	aload_0;
+					sconst_0;
+					putfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					aload_0;
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_0;
+					saload;
+					sconst_1;
+					sadd;
+					putfield_s 2;		// short quan_li_sv/quan_li_sv.i
+				L14:	getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					getstatic_a 7;		// reference quan_li_sv/quan_li_sv.t
+					sconst_1;
+					saload;
+					if_scmpge L20;
+				L15:	getstatic_a 6;		// reference quan_li_sv/quan_li_sv.dob
+					getfield_s_this 1;		// short quan_li_sv/quan_li_sv.j
+					aload_2;
+					getfield_s_this 2;		// short quan_li_sv/quan_li_sv.i
+					baload;
+					bastore;
+					aload_0;
+					dup;
+					getfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					sconst_1;
+					sadd;
+					putfield_s 1;		// short quan_li_sv/quan_li_sv.j
+					aload_0;
+					dup;
+					getfield_s 2;		// short quan_li_sv/quan_li_sv.i
+					sconst_1;
+					sadd;
+					putfield_s 2;		// short quan_li_sv/quan_li_sv.i
+					goto L14;
+				L16:	getfield_s_this 3;		// short quan_li_sv/quan_li_sv.username_length
+					getfield_s_this 4;		// short quan_li_sv/quan_li_sv.id_length
+					sadd;
+					getfield_s_this 5;		// short quan_li_sv/quan_li_sv.dob_length
+					sadd;
+					sstore 4;
+				L17:	aload_1;
+					invokevirtual 17;		// setOutgoing()S
+					sstore 5;
+				L18:	aload_1;
+					sload 4;
+					invokevirtual 18;		// setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 16;		// reference quan_li_sv/quan_li_sv.username
+					sconst_0;
+					getfield_s_this 3;		// short quan_li_sv/quan_li_sv.username_length
+					invokevirtual 19;		// sendBytesLong([BSS)V
+					aload_1;
+					getstatic_a 15;		// reference quan_li_sv/quan_li_sv.id
+					sconst_0;
+					getfield_s_this 4;		// short quan_li_sv/quan_li_sv.id_length
+					invokevirtual 19;		// sendBytesLong([BSS)V
+					aload_1;
+					getstatic_a 6;		// reference quan_li_sv/quan_li_sv.dob
+					sconst_0;
+					getfield_s_this 5;		// short quan_li_sv/quan_li_sv.dob_length
+					invokevirtual 19;		// sendBytesLong([BSS)V
+					goto L20;
+				L19:	sspush 27904;
+					invokestatic 20;		// javacard/framework/ISOException.throwIt(S)V
+				L20:	return;
+		}
+
+	}
+
+}

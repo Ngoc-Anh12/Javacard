@@ -1,0 +1,376 @@
+// converted by version 1.3
+// on Fri Aug 07 01:09:43 ICT 2020
+
+.package kiemtrachuki {
+	.aid 0x1:0x2:0x3:0x4:0x5;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x2 1.2;		//javacard/security
+	}
+
+	.applet {
+		0x1:0x2:0x3:0x4:0x5:0x0 kiemtrachuki;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef short kiemtrachuki/signlen;
+		// 1
+		instanceFieldRef 1.15 kiemtrachuki/signrsa;
+		// 2
+		instanceFieldRef 1.8 kiemtrachuki/RSAprikey;
+		// 3
+		instanceFieldRef 1.9 kiemtrachuki/RSApubkey;
+		// 4
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 5
+		staticFieldRef byte[] kiemtrachuki/sign_buf;
+		// 6
+		staticMethodRef 1.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+			.descriptor	Ljavacard/security/Signature;	1.15;
+
+		// 7
+		staticFieldRef byte[] kiemtrachuki/s1;
+		// 8
+		staticMethodRef 1.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 9
+		classRef 1.8;		// javacard/security/RSAPrivateKey
+		// 10
+		staticFieldRef byte[] kiemtrachuki/s2;
+		// 11
+		classRef 1.9;		// javacard/security/RSAPublicKey
+		// 12
+		staticFieldRef byte[] kiemtrachuki/s3;
+		// 13
+		classRef 1.16;		// javacard/security/KeyPair
+		// 14
+		staticMethodRef 1.16.0(BS)V;		// javacard/security/KeyPair.<init>(BS)V
+		// 15
+		virtualMethodRef 1.16.1()V;		// javacard/security/KeyPair.genKeyPair()V
+		// 16
+		virtualMethodRef 1.16.2()Ljavacard/security/PrivateKey;;		// javacard/security/KeyPair.getPrivate()Ljavacard/security/PrivateKey;
+			.descriptor	Ljavacard/security/PrivateKey;	1.2;
+
+		// 17
+		virtualMethodRef 1.16.3()Ljavacard/security/PublicKey;;		// javacard/security/KeyPair.getPublic()Ljavacard/security/PublicKey;
+			.descriptor	Ljavacard/security/PublicKey;	1.3;
+
+		// 18
+		classRef kiemtrachuki;
+		// 19
+		staticMethodRef kiemtrachuki/<init>()V;
+		// 20
+		virtualMethodRef 0.3.2([BSB)V;		// javacard/framework/Applet.register([BSB)V
+		// 21
+		virtualMethodRef 0.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 22
+		virtualMethodRef 0.10.1()[B;		// javacard/framework/APDU.getBuffer()[B
+		// 23
+		virtualMethodRef 0.10.6()S;		// javacard/framework/APDU.setIncomingAndReceive()S
+		// 24
+		staticMethodRef kiemtrachuki/sign(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 25
+		staticMethodRef kiemtrachuki/verify(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+		// 26
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 27
+		virtualMethodRef 1.15.3(Ljavacard/security/Key;B)V;		// javacard/security/Signature.init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	1.0;
+
+		// 28
+		virtualMethodRef 1.15.6([BSS)V;		// javacard/security/Signature.update([BSS)V
+		// 29
+		virtualMethodRef 1.15.5([BSS[BS)S;		// javacard/security/Signature.sign([BSS[BS)S
+		// 30
+		virtualMethodRef 0.10.7()S;		// javacard/framework/APDU.setOutgoing()S
+		// 31
+		virtualMethodRef 0.10.9(S)V;		// javacard/framework/APDU.setOutgoingLength(S)V
+		// 32
+		virtualMethodRef 0.10.5([BSS)V;		// javacard/framework/APDU.sendBytesLong([BSS)V
+		// 33
+		virtualMethodRef 1.15.7([BSS[BSS)Z;		// javacard/security/Signature.verify([BSS[BSS)Z
+		// 34
+		virtualMethodRef 0.10.8(SS)V;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
+	}
+
+	.class public kiemtrachuki 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private 1.8 RSAprikey 0;		// Ljavacard/security/RSAPrivateKey;
+			private 1.9 RSApubkey 1;		// Ljavacard/security/RSAPublicKey;
+			private 1.15 signrsa 2;		// Ljavacard/security/Signature;
+			private short signlen 3;		// S
+			private static final byte INS_SIGN = 1;		// B
+			private static final byte INS_VERIFY = 2;		// B
+			private static byte[] s1;		// [B
+			private static byte[] s2;		// [B
+			private static byte[] s3;		// [B
+			private static byte[] sign_buf;		// [B
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method private <init>()V {
+			.stack 5;
+			.locals 1;
+
+				L0:	aload_0;
+					invokespecial 4;		// javacard/framework/Applet.<init>()V
+					sconst_3;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_2;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_3;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_4;
+					bastore;
+					putstatic_a 7;		// reference kiemtrachuki/kiemtrachuki.s1
+					sconst_2;
+					newarray 11;
+					dup;
+					sconst_0;
+					sconst_5;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 6;
+					bastore;
+					putstatic_a 10;		// reference kiemtrachuki/kiemtrachuki.s2
+					sconst_2;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush 7;
+					bastore;
+					dup;
+					sconst_1;
+					bspush 8;
+					bastore;
+					putstatic_a 12;		// reference kiemtrachuki/kiemtrachuki.s3
+					aload_0;
+					sspush 128;
+					putfield_s 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					newarray 11;
+					putstatic_a 5;		// reference kiemtrachuki/kiemtrachuki.sign_buf
+					aload_0;
+					bspush 10;
+					sconst_0;
+					invokestatic 6;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+					putfield_a 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					aload_0;
+					sconst_5;
+					bspush 8;
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					smul;
+					sconst_0;
+					invokestatic 8;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 9;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					putfield_a 2;		// reference kiemtrachuki/kiemtrachuki.RSAprikey
+					aload_0;
+					sconst_4;
+					bspush 8;
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					smul;
+					sconst_0;
+					invokestatic 8;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 11;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					putfield_a 3;		// reference kiemtrachuki/kiemtrachuki.RSApubkey
+					new 13;		// javacard/security/KeyPair
+					dup;
+					sconst_1;
+					bspush 8;
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					smul;
+					invokespecial 14;		// javacard/security/KeyPair.<init>(BS)V
+					astore_1;
+				L1:	aload_1;
+					invokevirtual 15;		// javacard/security/KeyPair.genKeyPair()V
+					aload_0;
+					aload_1;
+					invokevirtual 16;		// javacard/security/KeyPair.getPrivate()Ljavacard/security/PrivateKey;
+					checkcast 0 9;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					putfield_a 2;		// reference kiemtrachuki/kiemtrachuki.RSAprikey
+					aload_0;
+					aload_1;
+					invokevirtual 17;		// javacard/security/KeyPair.getPublic()Ljavacard/security/PublicKey;
+					checkcast 0 11;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					putfield_a 3;		// reference kiemtrachuki/kiemtrachuki.RSApubkey
+					return;
+		}
+
+		.method public static install([BSB)V 0 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 18;		// kiemtrachuki/kiemtrachuki
+					dup;
+					invokespecial 19;		// kiemtrachuki/kiemtrachuki.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 20;		// javacard/framework/Applet.register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 21;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 22;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L3:	aload_1;
+					invokevirtual 23;		// javacard/framework/APDU.setIncomingAndReceive()S
+					pop;
+					aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L6 2 1 L4 2 L5;
+				L4:	aload_0;
+					aload_1;
+					invokespecial 24;		// kiemtrachuki/kiemtrachuki.sign(Ljavacard/framework/APDU;)V
+					goto L7;
+				L5:	aload_0;
+					aload_1;
+					invokespecial 25;		// kiemtrachuki/kiemtrachuki.verify(Ljavacard/framework/APDU;)V
+					goto L7;
+				L6:	sspush 27904;
+					invokestatic 26;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	return;
+		}
+
+		.method private sign(Ljavacard/framework/APDU;)V {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getfield_a_this 2;		// reference kiemtrachuki/kiemtrachuki.RSAprikey
+					sconst_1;
+					invokevirtual 27;		// javacard/security/Signature.init(Ljavacard/security/Key;B)V
+					getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getstatic_a 7;		// reference kiemtrachuki/kiemtrachuki.s1
+					sconst_0;
+					getstatic_a 7;		// reference kiemtrachuki/kiemtrachuki.s1
+					arraylength;
+					invokevirtual 28;		// javacard/security/Signature.update([BSS)V
+					getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getstatic_a 10;		// reference kiemtrachuki/kiemtrachuki.s2
+					sconst_0;
+					getstatic_a 10;		// reference kiemtrachuki/kiemtrachuki.s2
+					arraylength;
+					invokevirtual 28;		// javacard/security/Signature.update([BSS)V
+					getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getstatic_a 12;		// reference kiemtrachuki/kiemtrachuki.s3
+					sconst_0;
+					getstatic_a 12;		// reference kiemtrachuki/kiemtrachuki.s3
+					arraylength;
+					getstatic_a 5;		// reference kiemtrachuki/kiemtrachuki.sign_buf
+					sconst_0;
+					invokevirtual 29;		// javacard/security/Signature.sign([BSS[BS)S
+					pop;
+					aload_1;
+					invokevirtual 30;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					invokevirtual 31;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getstatic_a 5;		// reference kiemtrachuki/kiemtrachuki.sign_buf
+					sconst_0;
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					invokevirtual 32;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					return;
+		}
+
+		.method private verify(Ljavacard/framework/APDU;)V {
+			.stack 7;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_1;
+					invokevirtual 22;		// javacard/framework/APDU.getBuffer()[B
+					astore_2;
+				L1:	getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getfield_a_this 3;		// reference kiemtrachuki/kiemtrachuki.RSApubkey
+					sconst_2;
+					invokevirtual 27;		// javacard/security/Signature.init(Ljavacard/security/Key;B)V
+					getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getstatic_a 7;		// reference kiemtrachuki/kiemtrachuki.s1
+					sconst_0;
+					getstatic_a 7;		// reference kiemtrachuki/kiemtrachuki.s1
+					arraylength;
+					invokevirtual 28;		// javacard/security/Signature.update([BSS)V
+					getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getstatic_a 10;		// reference kiemtrachuki/kiemtrachuki.s2
+					sconst_0;
+					getstatic_a 10;		// reference kiemtrachuki/kiemtrachuki.s2
+					arraylength;
+					invokevirtual 28;		// javacard/security/Signature.update([BSS)V
+					getfield_a_this 1;		// reference kiemtrachuki/kiemtrachuki.signrsa
+					getstatic_a 12;		// reference kiemtrachuki/kiemtrachuki.s3
+					sconst_0;
+					getstatic_a 12;		// reference kiemtrachuki/kiemtrachuki.s3
+					arraylength;
+					getstatic_a 5;		// reference kiemtrachuki/kiemtrachuki.sign_buf
+					sconst_0;
+					getfield_s_this 0;		// short kiemtrachuki/kiemtrachuki.signlen
+					invokevirtual 33;		// javacard/security/Signature.verify([BSS[BSS)Z
+					sstore_3;
+				L2:	aload_2;
+					sconst_0;
+					sload_3;
+					ifeq L4;
+				L3:	sconst_1;
+					goto L5;
+				L4:	sconst_0;
+				L5:	bastore;
+					aload_1;
+					sconst_0;
+					sconst_1;
+					invokevirtual 34;		// javacard/framework/APDU.setOutgoingAndSend(SS)V
+					return;
+		}
+
+	}
+
+}

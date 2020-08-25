@@ -1,0 +1,8 @@
+<JavaCardProject name="quan_li_sv">
+<USER>
+<PKG name="quan_li_sv" aid="11 22 33 44 55" major="1" minor="0">
+<APPLET aid="11 22 33 44 55 00" instanceaid="" parameter="" authority="" privileges="" index="-208" name="quan_li_sv"/>
+</PKG>
+<Libs/>
+</USER>
+</JavaCardProject>
